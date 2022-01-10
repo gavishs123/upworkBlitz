@@ -16,6 +16,9 @@ const UserInfo = () => {
         <Suspense fallback="Loading...">
           <DashBoard />
         </Suspense>
+        <Suspense fallback="Loading...">
+          <UserInfo />
+        </Suspense>
         <button
           className="button small"
           onClick={async () => {
@@ -49,9 +52,6 @@ const Home: BlitzPage = () => {
     <div className="container">
       <main>
         <div className="buttons" style={{ marginTop: "1rem", marginBottom: "1rem" }}>
-          <Suspense fallback="Loading...">
-            <UserInfo />
-          </Suspense>
           <>
             <Link href={Routes.SignupPage()}>
               <a className="button small">
