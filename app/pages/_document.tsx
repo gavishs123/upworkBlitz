@@ -1,4 +1,5 @@
-import {Document, Html, DocumentHead, Main, BlitzScript /*DocumentContext*/} from 'blitz'
+import { Document, Html, DocumentHead, Main, BlitzScript /*DocumentContext*/ } from "blitz"
+import { Suspense } from "react"
 
 class MyDocument extends Document {
   // Only uncomment if you need to customize this behaviour
