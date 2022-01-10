@@ -1,15 +1,13 @@
-import React, { Suspense } from "react"
+import { Suspense } from "react"
 import { Image, Link, BlitzPage, useMutation, Routes } from "blitz"
 import Layout from "app/core/layouts/Layout"
 import { useCurrentUser } from "app/core/hooks/useCurrentUser"
 import logout from "app/auth/mutations/logout"
 import logo from "public/logo.png"
-import DashBoard from "./DashBoard"
+// import DashBoard from './DashBoard'
+import { dynamic } from "blitz"
 
-/*
- * This file is just for a pleasant getting started page for your new app.
- * You can delete everything in here and start from scratch if you like.
- */
+const DashBoard = dynamic(() => import("./DashBoard"))
 
 const UserInfo = () => {
   const currentUser = useCurrentUser()
@@ -18,9 +16,9 @@ const UserInfo = () => {
   if (currentUser) {
     return (
       <div>
-        <React.Suspense fallback="Loading...">
-          <DashBoard />
-        </React.Suspense>
+        {/* <Suspense fallback="Loading..."> */}
+        <DashBoard />
+        {/* </Suspense> */}
         <button
           className="button small"
           onClick={async () => {
@@ -54,9 +52,9 @@ const Home: BlitzPage = () => {
     <div className="container">
       <main>
         <div className="buttons" style={{ marginTop: "1rem", marginBottom: "1rem" }}>
-          <React.Suspense fallback="Loading...">
+          <Suspense fallback="Loading...">
             <UserInfo />
-          </React.Suspense>
+          </Suspense>
         </div>
       </main>
 
