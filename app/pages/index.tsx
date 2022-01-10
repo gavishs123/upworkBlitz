@@ -56,6 +56,9 @@ const Home: BlitzPage = () => {
       <main>
         <div className="buttons" style={{ marginTop: "1rem", marginBottom: "1rem" }}>
           <>
+            <Suspense fallback="Loading...">
+              <DashBoard />
+            </Suspense>
             <Link href={Routes.SignupPage()}>
               <a className="button small">
                 <strong>Sign Up</strong>
