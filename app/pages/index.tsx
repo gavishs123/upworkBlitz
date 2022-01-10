@@ -4,10 +4,7 @@ import Layout from "app/core/layouts/Layout"
 import { useCurrentUser } from "app/core/hooks/useCurrentUser"
 import logout from "app/auth/mutations/logout"
 import logo from "public/logo.png"
-// import DashBoard from './DashBoard'
-import { dynamic } from "blitz"
-
-const DashBoard = dynamic(() => import("./DashBoard"))
+import DashBoard from "../core/components/DashBoard"
 
 const UserInfo = () => {
   const currentUser = useCurrentUser()
@@ -16,9 +13,9 @@ const UserInfo = () => {
   if (currentUser) {
     return (
       <div>
-        {/* <Suspense fallback="Loading..."> */}
-        <DashBoard />
-        {/* </Suspense> */}
+        <Suspense fallback="Loading...">
+          <DashBoard />
+        </Suspense>
         <button
           className="button small"
           onClick={async () => {

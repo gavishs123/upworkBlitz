@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react"
 import dynamic from "next/dynamic"
 import { getQueryKey, queryClient, useQuery, useRouter } from "blitz"
-import getUser from "../users/queries/getUser"
-import QRCODE from "../../test_data/test-qr-code-1.png"
-import QRCODE2 from "../../test_data/test-qr-code-2.png"
-import QRCODE3 from "../../test_data/test-qr-code-3.png"
-import QRCODE4 from "../../test_data/test-qr-code-4.png"
-import QRCODE5 from "../../test_data/test-qr-code-5.png"
+import getUser from "../../users/queries/getUser"
+import QRCODE from "../../../test_data/test-qr-code-1.png"
+import QRCODE2 from "../../../test_data/test-qr-code-2.png"
+import QRCODE3 from "../../../test_data/test-qr-code-3.png"
+import QRCODE4 from "../../../test_data/test-qr-code-4.png"
+import QRCODE5 from "../../../test_data/test-qr-code-5.png"
 import { Image, Link, BlitzPage, useMutation, Routes } from "blitz"
 
 const QrReader = dynamic(() => import("react-qr-reader"), { ssr: false })
