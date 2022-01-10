@@ -13,9 +13,8 @@ import QRCODE2 from "../../test_data/test-qr-code-2.png"
 import QRCODE3 from "../../test_data/test-qr-code-3.png"
 import QRCODE4 from "../../test_data/test-qr-code-4.png"
 import QRCODE5 from "../../test_data/test-qr-code-5.png"
-import QrReader from "react-qr-reader"
 
-// const QrReader = dynamic(() => import("react-qr-reader"), { ssr: false })
+const QrReader = dynamic(() => import("react-qr-reader"), { ssr: false })
 
 const UserInfo = () => {
   const currentUser = useCurrentUser()
@@ -95,14 +94,12 @@ const Home: BlitzPage = () => {
       <main>
         <div className="buttons" style={{ marginTop: "1rem", marginBottom: "1rem" }}>
           <div style={{ width: "400px", height: "400px" }}>
-            <Suspense fallback="Loading...">
-              <QrReader
-                delay={300}
-                onError={handleError}
-                onScan={handleScan}
-                style={{ width: "100%" }}
-              />
-            </Suspense>
+            <QrReader
+              delay={300}
+              onError={handleError}
+              onScan={handleScan}
+              style={{ width: "100%" }}
+            />
             <p>{result}</p>
             <p>{typeof result}</p>
             <p>{result.length}</p>
