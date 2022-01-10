@@ -1,4 +1,4 @@
-import { Suspense } from "react"
+import React, { Suspense } from "react"
 import { Image, Link, BlitzPage, useMutation, Routes } from "blitz"
 import Layout from "app/core/layouts/Layout"
 import { useCurrentUser } from "app/core/hooks/useCurrentUser"
@@ -18,9 +18,9 @@ const UserInfo = () => {
   if (currentUser) {
     return (
       <div>
-        <Suspense fallback="Loading...">
+        <React.Suspense fallback="Loading...">
           <DashBoard />
-        </Suspense>
+        </React.Suspense>
         <button
           className="button small"
           onClick={async () => {
@@ -54,9 +54,9 @@ const Home: BlitzPage = () => {
     <div className="container">
       <main>
         <div className="buttons" style={{ marginTop: "1rem", marginBottom: "1rem" }}>
-          <Suspense fallback="Loading...">
+          <React.Suspense fallback="Loading...">
             <UserInfo />
-          </Suspense>
+          </React.Suspense>
         </div>
       </main>
 
