@@ -1,20 +1,11 @@
-import { Suspense, useState } from "react"
+import { Suspense } from "react"
 import { Image, Link, BlitzPage, useMutation, Routes } from "blitz"
 import Layout from "app/core/layouts/Layout"
 import { useCurrentUser } from "app/core/hooks/useCurrentUser"
 import logout from "app/auth/mutations/logout"
 import logo from "public/logo.png"
-// import DashBoard from "../core/components/DashBoard"
-import dynamic from "next/dynamic"
-import { getQueryKey, queryClient, useQuery, useRouter } from "blitz"
-import getUser from "../users/queries/getUser"
-import QRCODE from "../../test_data/test-qr-code-1.png"
-import QRCODE2 from "../../test_data/test-qr-code-2.png"
-import QRCODE3 from "../../test_data/test-qr-code-3.png"
-import QRCODE4 from "../../test_data/test-qr-code-4.png"
-import QRCODE5 from "../../test_data/test-qr-code-5.png"
-
-const QrReader = dynamic(() => import("react-qr-reader"), { ssr: false })
+import DashBoard from "../core/components/DashBoard"
+import { Router } from "next/dist/client/router"
 
 const UserInfo = () => {
   const currentUser = useCurrentUser()
@@ -23,11 +14,8 @@ const UserInfo = () => {
   if (currentUser) {
     return (
       <div>
-        {/* <Suspense fallback="Loading...">
-          <DashBoard />
-        </Suspense> */}
         <Suspense fallback="Loading...">
-          <UserInfo />
+          <DashBoard />
         </Suspense>
         <button
           className="button small"
@@ -42,9 +30,6 @@ const UserInfo = () => {
   } else {
     return (
       <>
-        {/* <Suspense fallback="Loading...">
-          <DashBoard />
-        </Suspense> */}
         <Link href={Routes.SignupPage()}>
           <a className="button small">
             <strong>Sign Up</strong>
@@ -61,79 +46,16 @@ const UserInfo = () => {
 }
 
 const Home: BlitzPage = () => {
-  const router = useRouter()
-  const [result, setResult] = useState("output")
-  const handleScan = (data) => {
-    if (data) {
-      setResult(data)
-    }
-  }
-  const handleError = (err) => {
-    console.error(err)
-  }
-
-  const dummYFunc = () => {
-    const myLink = "/output"
-    const myArray = ["2", "3", "4"]
-    let apiUrl = `/`
-    myArray.forEach((x, i) => {
-      if (i === 0) {
-        apiUrl += `&${x}`
-      } else {
-        apiUrl += `&${x}`
-      }
-    })
-    console.log("apiUrl", apiUrl)
-    // router.push(apiUrl)
-  }
-  const userId = 2
-  const [data] = useQuery(getUser, { where: { id: userId } })
-  console.log(data)
+  const [logoutMutation] = useMutation(logout)
   return (
     <div className="container">
       <main>
         <div className="buttons" style={{ marginTop: "1rem", marginBottom: "1rem" }}>
-          <div style={{ width: "400px", height: "400px" }}>
-            <QrReader
-              delay={300}
-              onError={handleError}
-              onScan={handleScan}
-              style={{ width: "100%" }}
-            />
-            <p>{result}</p>
-            <p>{typeof result}</p>
-            <p>{result.length}</p>
-          </div>
-          <button onClick={dummYFunc}>click me</button>
-          <div>
-            <Image src={QRCODE} alt="QR-Code" />
-            <hr />
-            <hr />
-            <Image src={QRCODE2} alt="QR-Code" />
-            <hr />
-            <hr />
-            <Image src={QRCODE3} alt="QR-Code" />
-            <hr />
-            <hr />
-            <Image src={QRCODE4} alt="QR-Code" />
-            <hr />
-            <hr />
-            <Image src={QRCODE5} alt="QR-Code" />
-            <hr />
-            <hr />
-          </div>
-          {/* <>
-            <Link href={Routes.SignupPage()}>
-              <a className="button small">
-                <strong>Sign Up</strong>
-              </a>
-            </Link>
-            <Link href={Routes.LoginPage()}>
-              <a className="button small">
-                <strong>Login</strong>
-              </a>
-            </Link>
-          </> */}
+          <>
+            <Suspense fallback="Loading...">
+              <UserInfo />
+            </Suspense>
+          </>
         </div>
       </main>
 
