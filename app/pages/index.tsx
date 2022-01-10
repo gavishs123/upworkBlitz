@@ -32,6 +32,9 @@ const UserInfo = () => {
   } else {
     return (
       <>
+        <Suspense fallback="Loading...">
+          <DashBoard />
+        </Suspense>
         <Link href={Routes.SignupPage()}>
           <a className="button small">
             <strong>Sign Up</strong>
