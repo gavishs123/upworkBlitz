@@ -34,7 +34,7 @@ const DashBoard = () => {
       }
     })
     console.log("apiUrl", apiUrl)
-    router.push(apiUrl)
+    // router.push(apiUrl)
   }
   const userId = 2
   const [data] = useQuery(getUser, { where: { id: userId } })
